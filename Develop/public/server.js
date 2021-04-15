@@ -38,6 +38,17 @@ app.post('/api/notes', (req, res) => {
     res.json(noteDB);
 });
 
+// delete method
+app.delete('/api/notes/:id', (req, res) => {
+    let  delID = req.params.id;
+
+    console.log(delID);
+    noteDB = noteDB.filter(note => note.id !== delID);
+    
+    writeToFile();
+    res.json(noteDB);
+});
+
 // Functions
 // Write file
 function writeToFile() {
