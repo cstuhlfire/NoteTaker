@@ -2,6 +2,9 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+let uniqid = require('uniqid');
+let noteDB = require('../db/db.json');
+
 
 // Set up the Express App
 const app = express();
@@ -13,17 +16,39 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // Define routes
+// get method
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, './index.html')));
 app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, './notes.html')));
-app.get('/api/notes', (req, res) => res.sendFile(path.join(__dirname, '..\\db\\db.json')));
+app.get('/api/notes', (req, res) => res.sendFile(path.join(__dirname, '../db/db.json')));
 app.get('/*', (req, res) => res.sendFile(path.join(__dirname, './index.html')));
 
+// post method
 app.post('/api/notes', (req, res) => {
     const newNote = req.body;
+    let newID = uniqid();
 
+    let noteObj = {
+        id: newID,
+        title: newNote.title,
+        text: newNote.text,
+    };
+    noteDB.push(noteObj);
     
-    console.log("newNote: "+newNote.title);
+    writeToFile();
+    res.json(noteDB);
 });
+
+// Functions
+// Write file
+function writeToFile() {
+    const fileName = "./db/db.json";
+  
+    let fileString = JSON.stringify(noteDB);
+
+    fs.writeFile(fileName, fileString, (err) =>
+      err ? console.log(err) : console.log("Updating db.json...")
+    );
+  }
 
 
 // Starts the server to begin listening
