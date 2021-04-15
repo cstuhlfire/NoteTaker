@@ -1,7 +1,9 @@
 # Note Taker
 ## 
 ## Description 
-This application allows users to record and delete a set of notes. Notes are stored on a server, making the application readily accessible with an internet connection.
+This application allows users to record and delete a set of notes. 
+
+Notes are stored on a server, making the application readily accessible with an internet connection.
 ## Table of Contents
 - [Installation](#installation)
 - [Deployed Application](#application)
@@ -17,7 +19,11 @@ Run the application from the deployed Heroku link.
 
 ## Usage
 ```
-To use the appliation, launch it from its deployed link. Click Get Started to begin. Add new notes and descriptions. Save them by clicking on the disk icon. Delete notes by clicking on the trash icon. Click on the pencil to add new notes.
+To use the appliation, launch it from its deployed link. Click Get Started to begin.
+
+Add new notes and descriptions. Save them by clicking on the disk icon. 
+
+Delete notes by clicking on the trash icon. Click on the pencil to add new notes.
 ```
 ## Screenshot
 ![Screenshot](./Images/NoteTakerHome.PNG)
