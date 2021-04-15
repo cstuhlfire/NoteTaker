@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 let uniqid = require('uniqid');
-let noteDB = require('../db/db.json');
+let noteDB = require('./db/db.json');
 
 
 // Set up the Express App
@@ -17,10 +17,10 @@ app.use(express.static('public'));
 
 // Define routes
 // get method
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, './index.html')));
-app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, './notes.html')));
-app.get('/api/notes', (req, res) => res.sendFile(path.join(__dirname, '../db/db.json')));
-app.get('/*', (req, res) => res.sendFile(path.join(__dirname, './index.html')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, './public/index.html')));
+app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, './public/notes.html')));
+app.get('/api/notes', (req, res) => res.sendFile(path.join(__dirname, './db/db.json')));
+app.get('/*', (req, res) => res.sendFile(path.join(__dirname, './public/index.html')));
 
 // post method
 app.post('/api/notes', (req, res) => {
